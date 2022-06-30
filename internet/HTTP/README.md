@@ -14,7 +14,7 @@ Each HTTP request made across the Internet carries with it a series of encoded d
 ## HTTP request Header
 HTTP headers contain text information stored in key-value pairs, and they are included in every HTTP request. These Headers communicae core information, such as what browser the clit is using and info about data 
 
- >image
+![image](https://user-images.githubusercontent.com/49281851/176595768-13f736fa-040d-47b9-bc31-72701ee5a808.png)
 
 
 ## What’s in an HTTP request body?
@@ -41,4 +41,4 @@ HTTP status codes are 3-digit codes most often used to indicate whether an HTTP 
 ## What are HTTP response headers?
 HTTP response comes with headers that convey important information such as the languageand format of the data being sent in the response body.
 
-> image
+<img width="550" alt="image" src="https://user-images.githubusercontent.com/49281851/176595835-2bc9a0d0-ab2b-402e-ba0e-c57db954250d.png">
