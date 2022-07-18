@@ -7,6 +7,7 @@ A process **encapsulates** all the data for running application, this includes t
 
 
 The process also encapsulates the process **stack** which contains temporary data (such as function parameters, return addresses, and local variables), it is a dynamic part of the process state which grows and shrinks during execution in Last-in-First-out order. Suppose we are executing a function “A” and want to call another function “B” from this function, for this, we have to save our current state (state of function “A”) to the stack and jump to execute function “B”, after the execution of function “B”, the state of the previous function (“A”) from which the function “B” was called is restored from the top of the stack and function “A” can continue its execution from that vary instruction it had left (program counter was also saved).
+![image](https://user-images.githubusercontent.com/49281851/179557934-6416675e-8de3-4650-bb97-09ba48cbf64d.png)
 
 
 A process may also include a **heap**, which is the memory that is dynamically allocated during process run time. Text and data, stack and heap are the types of state of the process.
@@ -32,6 +33,8 @@ In the operating system, a process can create a child process. Hence all process
 
 ## The mechanism for process creation
 Most operating systems support two basic mechanisms for process creation
+![image](https://user-images.githubusercontent.com/49281851/179558016-a08dc53a-c73c-44fe-9b45-be5c619df1c8.png)
+
 
 Fork: With this mechanism, the operating system will create a new child process with PCB and then it copies all the values of parent’s PCB to child’s PCB. After that, both the child and the parent continues their execution at instruction just after the fork call because both processes contain exact same values in their PCB which also includes program counter.
 Exec: This replaces the child’s image and loads the new program. Child’s PCB contains the new initialized value and program executes from the beginning.
@@ -42,6 +45,7 @@ The mechanism of creating a new program is like calling the fork which creates a
 At a time there can be multiple processes waiting in the ready queue. The CPU scheduler determines which of the currently running process should be dispatched to the CPU for execution, and how long it should take.
 
 In order to manage the CPU, the operating system must be able to preempt i.e. to interrupt the current running process and save is current context. This operation is called preemption. Then operating system must run the scheduling algorithm in order to choose the next process to run. And at last, once the process is chosen the operating system must dispatch this process to the CPU and switch to its context. OS must make sure that CPU is spending more time on running processes and not executing scheduling algorithm, dispatching, preempting or doing some other OS operations. Hence it is important to have an efficient design and as well as efficient implementation of the various algorithms involved for example scheduling. Also, efficient data structures that are required to represent waiting processes in the ready queue or any other information (like the priority of the processes, how long the algorithm ran in the past) that are relevant to make scheduling decisions.
+![image](https://user-images.githubusercontent.com/49281851/179558064-0308217c-33d0-41cc-a81a-7dbf05dac94a.png)
 
 
 ## Inter-process communication
