@@ -47,6 +47,8 @@ Automatic management of heap by freeing unused memory allocations. GC is one of 
 
 **JVM(Java/Scala/Groovy/Kotlin), JavaScript, C#, Golang, OCaml,** and **Ruby** are some of the languages that use Garbage collection for memory management by default.
 
+![image](https://user-images.githubusercontent.com/49281851/182045648-378ea1dc-7a57-4325-ac30-78436de9452b.png)
+
   - **MARK & SWEEP GC**: Also known as Tracing GC. Its generally a two-phase algorithm that first marks objects that are still being referenced as "alive" and in the next phase frees the memory of objects that are not alive. **JVM, C#, JS** and **Golang** employ this approach for example. In JVM there different GC algorithms to choose from while JS engines like V8 use a MARK § SWEEP GC  along with Reference counting GC to compliment it. 
 
   - **Reference counting GC**: In this approach, every object gets a ref count which is incremented or decremented as ref to it change and garbage collection is done when the count becomes zero. It's not very preffered as it cannot handle cyclic references.
