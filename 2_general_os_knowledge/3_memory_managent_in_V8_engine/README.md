@@ -110,11 +110,15 @@ This type of GC keeps the old generation space compact and clean. This is trigge
 
 The Scavenger algorithm is perfect for small data size but is impractical for large heap, as the old space, as it has memory overhead and hence major GC is done using the **Mark-Sweep-Compact** algorithm. It uses a **tri-color**(white-grey-black) marking system. Hence major GC is a three-step process and the third step is executed depending on a fragmentation heuristic.
 
+![image](https://res.cloudinary.com/practicaldev/image/fetch/s--FJzf91b6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://i.imgur.com/rcjSZ0T.gif)
+
 - **Marking**: First step, common for both algorithms, where the garbage collector identifies which objects are in use and which ones are not in use. The objects in use or reachable from GC roots(Stack pointers) recursively are marked as alive. It's technically a depth-first-search of the heap which can be considered as a directed graph
 - **Sweeping**: The garbage collector traverses the heap and makes note of the memory address of any object that is not marked alive. This space is now marked as free in the free list and can be used to store other objects
 - **Compacting**: After sweeping, if required, all the survived objects will be moved to be together. This will decrease fragmentation and increase the performance of allocation of memory to newer objects
 
 This type of GC is also referred to as stop-the-world GC as they introduce pause-times in the process while performing GC. To avoid this V8 uses techniques like
+
+![image](https://user-images.githubusercontent.com/49281851/182500586-aff93f29-470b-4304-a8dc-565d23dec0de.png)
 
 - **Incremental GC**: GC is done in multiple incremental steps instead of one.
 - **Concurrent marking**: Marking is done concurrently using multiple helper threads without affecting the main JavaScript thread. Write barriers are used to keep track of new references between objects that JavaScript creates while the helpers are marking concurrently.
