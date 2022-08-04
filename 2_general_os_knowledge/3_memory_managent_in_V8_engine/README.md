@@ -2,7 +2,7 @@
 
 ## V8 memory structure
 
-Since JS is single-threaded V8 also uses a single process per JS context and hence if you use service workers it will spawn a new V8 process per worker. A running program is always represented bny some allocated memory in the V8 process and this is called **Resident Set**. This is further divided into different segments as:
+Since JS is single-threaded V8 also uses a single process per JS context and hence if you use service workers it will spawn a new V8 process per worker. A running program is always represented by some allocated memory in the V8 process and this is called **Resident Set**. This is further divided into different segments as:
 
 ## Heap Memory
 
