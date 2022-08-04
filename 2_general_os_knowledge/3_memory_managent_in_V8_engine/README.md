@@ -63,7 +63,7 @@ console.log(john.bonus);
 [this is demonstration of how does it works](https://speakerdeck.com/deepu105/v8-memory-usage-stack-and-heap)
 
 - **Global scope** is kept in a "Global frame" on the Stack
-- Every function cvall is added to the stack memory as frame-block
+- Every function call is added to the stack memory as frame-block
 - All local variables including args and the return valus is saved within the function frame-block on the Stack
 - All primitive tyoes are stored directly on the Stack. This applies to global scope as well
 - All object types are created on the Heap and is referenced from the Stack using Stack pointers. Functions are just objects in JS. Also applies to global scope as well
