@@ -84,7 +84,7 @@ V8 manages the heap memory be garbage collection. In simple terms, it frees the 
 
 The garbage collector in V8 is responsible for reclaiming the unused memory for reuse by the V8 process.
 
-V8 garbage collector are generational(Objects in Heap are grouped by their age and cleared at dfferant sages), There are two stages and three different algorithms used for gabage collection by V8:
+V8 garbage collector are generational(Objects in Heap are grouped by their age and cleared at dfferant stages), There are two stages and three different algorithms used for gabage collection by V8:
 
 ### Minor GC (Scavenger)
 
