@@ -78,7 +78,7 @@ Distinguished pointers and data on the heap is important for garbage collection 
 
 When a program tries to allocate more memory on the Heap that that is freely available(depending on the V8 flags set) we encounter **out of memory errors**. An incorrectlly managed heap could also a memory leak.
 
-V8 manages the heap memory be garbage collection. In simple terms, it frees the memory used by orphan objects, i.e, objects that are no longer referenced from the Stack directly of inderectly (via a refernce in another object) to make space for new object creation.
+V8 manages the heap memory be garbage collection. In simple terms, it frees the memory used by orphan objects, i.e, objects that are no longer referenced from the Stack directly or inderectly (via a refernce in another object) to make space for new object creation.
 
 > **Orinoco** is the codename of the V8 GC project to make use of parallel, incremental and concurrent techniques for garbage collection, to free the main thread.
 
