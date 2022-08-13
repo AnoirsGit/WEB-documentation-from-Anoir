@@ -1,4 +1,4 @@
-# Operating System: Process and Process Management
+# 🚀 Operating System: Process and Process Management
 
 Process: In simple words, a process is an instance of an executing application. An application is a file containing a list of instructions stored in the disk (often called an executable file), in flash memory, maybe in the cloud but it’s not executing, it’s a static entity. When an application is launched it is loaded into the memory and it becomes a process, so it is an active entity with a program counter specifying the next instruction to execute and a set of associated resources. If the same program is launched more than once than multiple processes will be created executing the same program but will be having a very different state.
 
