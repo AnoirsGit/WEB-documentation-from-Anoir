@@ -6,7 +6,11 @@ Go is as statically typed & compiled language like C/C++ and Rust. Hence Go does
 
 > Go runtime schedules Goroutines(`G`) onto Logical Process (`P`) for execution. Each `P` has machine (`M`). We will use `P`, `M` & `G` throughout this post. [Go scheduler](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part2.html)
 
+![image](https://user-images.githubusercontent.com/49281851/184501890-7fa5ee6b-1cd2-4188-9c75-9b78962c1ac9.png)
+
 Each Go program processes is allocated some viral memory by the OS, this is the total memory that the process has access to. The actual memory that is used within the virtual memory is called **Resident Set**. This space is managed by the internal memory constructs as below:
+
+![image](https://user-images.githubusercontent.com/49281851/184501957-30d5dfb3-e75a-4043-9a48-04b59d1da70d.png)
 
 This is a view based on the internal object used by Go, In reality, Go divides and groups memory into pages as described [here](https://blog.learngoprogramming.com/a-visual-guide-to-golang-memory-allocator-from-ground-up-e132258453ed)
 
@@ -20,9 +24,7 @@ The resident set is divided into pages of `8KB` each and is managed by one globa
 
 `mheap` manages pages grouped into different constructs as below:
 
-- **`mspan`**: `mspan` is the most basic structure that manages the pagesof memory in `mheap`. It's a double-linked list that holds the address of the start page, span size class, and the number of pages in the span. Like TCMalloc, Go also divides Memory Pages into a block of 67 different classes by size starting at 8bytes up to 32Kbytes as in the below image:
-
-  Each span exists twice, one for objects with pointers (**scan** classes) and one for objects with no pointers (`nosacan` classes). This helps during GC as `noscan` spans need not to be traversed too look for live objects.
+- **`mspan`**: `mspan` is the most basic structure that manages the pagesof memory in `mheap`. It's a double-linked list that holds the address of the start page, span size class, and the number of pages in the span. Like TCMalloc, Go also divides Memory Pages into a block of 67 different classes by size starting at 8bytes up to 32Kbytes as in the below image: ![image](https://user-images.githubusercontent.com/49281851/184501986-6291e254-0e7d-4568-a2e5-dd0b802ab095.png) Each span exists twice, one for objects with pointers (**scan** classes) and one for objects with no pointers (`nosacan` classes). This helps during GC as `noscan` spans need not to be traversed too look for live objects.
 
 - **`mcentral`**: `mcentral` groups spans of smae size class together. Each `mcentral` contains two `mspanList`:
   - **empty**: Double linked list of spans with no free objects or spans that are cached in a `mcache`. When span here is feeed, its moved to the nonempty list
@@ -97,13 +99,17 @@ Go's memory management involves automatic allocation when memory is needed and g
 Many programming languages that employ Garbage collection use a generational memory structure to make collection efficient along with compaction to reduce fragmentation. Go takes a different approach here, as we saw earlier, Go, structures memory quite differently. Go employs a thread-local cache to speed up small object allocations and maintains `scan`/`noscan` spans to speed up GC. This structure along with the process avoids fragmentation to a great extent making compact unnecessary during GC. Let's see how this allocation takes place.
 
 Go decides the allocation process of an objec based on its size and is divided into three categories:
-Tiny(size < 16B): Objects of size less than 16 bytes are allocated using the mcache's tiny allocator. This is efficient and multiple tiny allocations are done on a single 16-byte block.
+
+**Tiny(size < 16B)**: Objects of size less than 16 bytes are allocated using the mcache's tiny allocator. This is efficient and multiple tiny allocations are done on a single 16-byte block.
+![image](https://res.cloudinary.com/practicaldev/image/fetch/s--iILSHo5v--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://i.imgur.com/Kh26oVp.gif)
 
 **Small(size 16B ~ 32KB)**: Objects of size between 16 bytes and 32 Kilobytes are allocated on the corresponding size class(mspan) on mcache of the P where the G is running.
+![image](https://res.cloudinary.com/practicaldev/image/fetch/s--FZK3_38e--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://i.imgur.com/PY4pZhq.gif)
 
 In both tiny and small allocation if the `mspan`s list is empty the allocator will obtain a run of pages from the `mheap` to use `mspan`. If the `mheap` is emptyh or has no page runs large enough then it allocates a new group of pages (at least 1MB) from the OS.
 
 **Large(size > 32KB)**: Objects of size greater than 32 kilobytes are allocated directly on te corresponding size class of `mheap`. If the `mheap` id empty or has no page runs large enough then it allocates a new group of pages (at least 1MB)from the OS.
+![image](https://res.cloudinary.com/practicaldev/image/fetch/s--B2WWlqJJ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://i.imgur.com/uLhLZMm.gif)
 
 ## Garbage Collection 
 When a program tries to allocate more memory on the Heap than that is freely available we encounter ***out of memory errors***. An incorrectly managed heap could also cause a memory leak.
@@ -117,7 +123,7 @@ The process starts when a certain percentage(GC Percentage) of heap allocation a
 - **Mark Termination** (Stop the world): Once marking is done every active Gorountine is paused and write barries are turned off and clean up tasks are started. The GC  also calculates the GC goal here. Once this is done the reserved `P` are released back to the application.
 - **Sweeping** (Concurrent): Once the collection is done and allocations are attempted, the sweeping process starts to reclaim memory from the heap that is no markable alive. The amount of memory swept of synchronous to the amount being allocated.
 
-
+[visualization](https://speakerdeck.com/deepu105/go-gc-visualized)
 
 1) We are looking at a single Goroutine, the actual process does this for all active Goroutines. The write barriers are turned on first.
 2) The marking process picks a GC root and colors it black and traverses pointers from it in a depth-first tree-like manner, it marks each object encountered grey
