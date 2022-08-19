@@ -7,6 +7,8 @@ A process can be of two types:
 
 An independent pocess is not affected by the execution of other processes while a co-operating process can be affected by other executing processes. Though one can think that those poecesses, which are running independently, will wxwcute very efficiently, in reality, there are many situations when co-operative nature can be utilized for increasing computational speed, convenience, and modularity. Inter-process communication (IPC) is a mechanism that allows process to communicate with each other and synchronize their actions. The communication between these processes can be seen as a method of co-operation between them. Processes can communicate with each other though both:
 
+![image](https://user-images.githubusercontent.com/49281851/185671260-4a447f6c-adf7-449f-8754-1ac4c93ef007.png)
+
 1. Shared Memory
 2. Message passing
 
@@ -90,6 +92,8 @@ In this method, processes communicate with each other without using any kind of 
   We need at least two primitives:
   - **send**(message, distination) or **send**(message)
   - **receive**(message, host) or **receive**(message)
+
+![image](https://user-images.githubusercontent.com/49281851/185671348-cec0d037-1ec2-4cc5-87b0-f1016d5993c1.png)
 
 The message size can be fixed size or of variable size. If it is of fixed size, it is easy for an OS designer but complicated for a programmer and if it is of variable size then it is easy for programmer but complicated for OS designer. A standard message can have two parts: **header and body**.
 The **header part** is used for storing message type, distination id , source id, message length, and control information. The control information contains information like what to do if runs out of buffer space, sequence number, priority. Generally, message is sent FIFO style.
