@@ -5,7 +5,7 @@ A process can be of two types:
 - Independent process.
 - Co-operating porcess.
 
-An independent pocess is not affected by the execution of other processes while a co-operating process can be affected by other executing processes. Though one can think that those poecesses, which are running independently, will wxwcute very efficiently, in reality, there are many situations when co-operative nature can be utilized for increasing computational speed, convenience, and modularity. Inter-process communication (IPC) is a mechanism that allows process to communicate with each other and synchronize their actions. The communication between these processes can be seen as a method of co-operation between them. Processes can communicate with each other though both:
+An independent pocess is not affected by the execution of other processes while a co-operating process can be affected by other executing processes. Though one can think that those processes, which are running independently, will execute very efficiently, in reality, there are many situations when co-operative nature can be utilized for increasing computational speed, convenience, and modularity. Inter-process communication (IPC) is a mechanism that allows process to communicate with each other and synchronize their actions. The communication between these processes can be seen as a method of co-operation between them. Processes can communicate with each other though both:
 
 ![image](https://user-images.githubusercontent.com/49281851/185671260-4a447f6c-adf7-449f-8754-1ac4c93ef007.png)
 
@@ -18,9 +18,9 @@ Suppose process1 and process2 are executing simultaneously, and they share some 
 ## 1. Shared Memory Method
 
 Ex: Producer-Consumer problem
-There are two processes: Producesr and Consumer. The producer produces some items and the Consumer consumes that item. The two processes share a common space or memory location known as a buffer where the item produced by the Producer is stored and from which the Consumer consumes the item if needed. There are two versions of this problem: The first one is known as the unbounded buffer problem in which the Producer can produce upp to a certain number of items before it starts waiting for Consumer to consume it. First, the Producer and the Consumer will share soem common memory, then the producer will start producinf items. Tf the total produced item is equal to the size of the buffer, the producer will wait to get it consumed by the Consumer. Similarly, the consumer will wait for the Producer to produce it. If there are items available, Consumer will consume them.
+There are two processes: Producesr and Consumer. The producer produces some items and the Consumer consumes that item. The two processes share a common space or memory location known as a buffer where the item produced by the Producer is stored and from which the Consumer consumes the item if needed. There are two versions of this problem: The first one is known as the unbounded buffer problem in which the Producer can produce up to a certain number of items before it starts waiting for Consumer to consume it. First, the Producer and the Consumer will share some common memory, then the producer will start produc inf items. Tf the total produced item is equal to the size of the buffer, the producer will wait to get it consumed by the Consumer. Similarly, the consumer will wait for the Producer to produce it. If there are items available, Consumer will consume them.
 
-```C
+``` C
 #define buff_max 25
 #define mod %
 
