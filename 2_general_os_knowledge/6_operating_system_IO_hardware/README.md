@@ -38,6 +38,8 @@ This uses CPU instruction that are made for contorlling I/O devices. These instr
 
 When using memory-mapped I/O, the same address space is shared by memory and I/O devices. The device is connected directly to certain main memory locations so that I/O device can transfer block of data to/from memory without going through CPU.
 
+![image](https://user-images.githubusercontent.com/49281851/190649502-81a2bef8-1ff1-45e3-a203-545c4afbf0dc.png)
+
 While using memory mapped I/O, OS allocates buffer in memory and informs I/O device to use that buffer to send data to the CPU. I/O device operates asynchronously with CPU, interrupts CPU when finished.
 
 The advantage to this method is that every instruction which can access memory can be used to manipulate an I/O device. Memory mapped IO is used for most high-speed I/O devices like disks, communication interface
@@ -47,6 +49,8 @@ The advantage to this method is that every instruction which can access memory c
 DMA means CPU grants I/O module authority to read from or write to memory without involvement. DMA module constrols exchange of data between main memory and I/O device. CPU is only involved at the beginning and end of the transfer and intrrupted only after entire block has been transferred.
 
 DMA needs hardware DMA controller **DMAC** that manages the data transfer and arbitrates acces to the system bus. The controllers are progreammed with source and destination pointers (where to read/write), counters to track the number of transferred bytes, and settings, which includes I/O and memory types, interrupts and states the CPU cycles.
+
+![image](https://user-images.githubusercontent.com/49281851/190649558-edeb7cd9-5b94-45e6-a505-34634a228d5c.png)
 
 1. Device driver is instructed to transfer disk data to a buffer address X
 2. Device driver then instruct disk controller to transfer data to buffer
