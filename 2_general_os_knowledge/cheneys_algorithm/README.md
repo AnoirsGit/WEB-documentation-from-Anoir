@@ -1,6 +1,7 @@
 # Cheney's algorithm
 
-## [Video](https://www.youtube.com/watch?v=S1xvtHsarbI)
+## [Video 1](https://www.youtube.com/watch?v=S1xvtHsarbI)
+## [Video 2](https://www.youtube.com/watch?v=jYt3uQtbLfE)
 
 **Cheney's algorithm**, first described in a 1970 ACM paper by C.J. Cheney, is a method of garbage collection in computer software systems.
 In this scheme, the heap is divided into two equal halves, only one of which is in use at any time. Garbage collection collection is performed be copying live objects from one semispave to other, which then becomes the new heap.
