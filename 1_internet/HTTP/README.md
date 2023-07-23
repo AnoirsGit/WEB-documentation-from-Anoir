@@ -50,3 +50,37 @@ HTTP status codes are 3-digit codes most often used to indicate whether an HTTP 
 HTTP response comes with headers that convey important information such as the languageand format of the data being sent in the response body.
 
 <img width="550" alt="image" src="https://user-images.githubusercontent.com/49281851/176595835-2bc9a0d0-ab2b-402e-ba0e-c57db954250d.png">
+
+## HTTP headers 
+  contain essential information that allows the client and server to communicate effectively and define how the request or response should be handled. HTTP headers are key-value pairs, where the header name is the key, and its corresponding value provides specific information. Here are some common HTTP headers and the information they can contain:
+
+### Request Headers:
+ - User-Agent: Contains information about the user agent (web browser or client) making the request.
+ - Accept: Specifies the media types (e.g., text/html, application/json) acceptable in the response.
+ - Authorization: Used for authentication purposes, typically when accessing secure resources.
+ - Content-Type: Specifies the media type of the content being sent in the request body.
+ - Cookie: Contains cookies previously set by the server to maintain stateful sessions.
+ - Referer (or Referer): Indicates the URL of the previous web page from which the request originated.
+ - Host: Specifies the host and port number of the resource being requested.
+
+### Response Headers:
+
+ - Content-Type: Specifies the media type of the content in the response (e.g., text/html, image/jpeg).
+ - Content-Length: Indicates the size of the response body in bytes.
+ - Cache-Control: Instructs the client or intermediary caches on how to handle caching of the response.
+ - Server: Specifies information about the web server software used.
+ - Set-Cookie: Used to set cookies on the client-side for maintaining stateful sessions.
+ - Location: Used in redirects to specify the new URL to which the client should navigate.
+ - Access-Control-Allow-Origin: Specifies which origin is allowed to access the response for cross-origin requests.
+
+### General Headers:
+
+ - Date: Indicates the date and time the request or response was created.
+ - Connection: Specifies whether the connection should be kept alive or closed after the current  - request/response.
+ - Cache-Control: Used for controlling caching mechanisms on the request or response.
+
+### Entity Headers:
+
+ - Content-Type: Specifies the media type of the request or response entity body (in addition to the header for the whole message).
+ - Content-Length: Indicates the size of the request or response entity body in bytes.
+ - Content-Encoding: Specifies any encoding applied to the entity body (e.g., gzip, deflate).
