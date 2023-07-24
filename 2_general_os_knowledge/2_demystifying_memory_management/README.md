@@ -9,7 +9,7 @@ Memory management is the process of controlling and coordinating the way a softw
 The stack is used for **static memory allocation** and as the name suggests it is a last in firs out(**LIFO**) stack
 
 - **Stack frames** is where the execution data of the functions are stored. Each frame is a block of space where the data required for that func is stored
-- **Multi-threaded applications** can have **stack per thread**- **Multi-threaded applications** can have **stack per thread**
+- **Multi-threaded applications** can have **stack per thread*
 - Typical data that are stored on stack are **local variables** (value types or primitives, primitive constants), **pointers** and **function frames**
 - This is where your would encounter **stack overflow errors** as sthe size of the stack is limited compared to the Heap
 - There is a **limit on the size** of value that can be stroed on the Stack for most languages
