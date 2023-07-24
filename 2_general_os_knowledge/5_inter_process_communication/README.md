@@ -18,7 +18,7 @@ Suppose process1 and process2 are executing simultaneously, and they share some 
 ## 1. Shared Memory Method
 
 Ex: Producer-Consumer problem
-There are two processes: Producesr and Consumer. The producer produces some items and the Consumer consumes that item. The two processes share a common space or memory location known as a buffer where the item produced by the Producer is stored and from which the Consumer consumes the item if needed. There are two versions of this problem: The first one is known as the unbounded buffer problem in which the Producer can produce up to a certain number of items before it starts waiting for Consumer to consume it. First, the Producer and the Consumer will share some common memory, then the producer will start produc inf items. Tf the total produced item is equal to the size of the buffer, the producer will wait to get it consumed by the Consumer. Similarly, the consumer will wait for the Producer to produce it. If there are items available, Consumer will consume them.
+The Producer-Consumer problem involves two processes: the Producer and the Consumer. The Producer creates items, and the Consumer consumes those items. They both use a shared memory space called a buffer to store the items produced by the Producer. If the buffer is full, the Producer waits for the Consumer to consume items, and if the buffer is empty, the Consumer waits for the Producer to produce items. The problem can have two versions: the unbounded buffer problem, where the Producer can produce as many items as needed before waiting, and the bounded buffer problem, where there's a limit to the buffer size.
 
 ``` C
 #define buff_max 25
