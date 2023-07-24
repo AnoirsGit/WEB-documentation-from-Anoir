@@ -1,6 +1,6 @@
 # Demystifying memory management in modern programming languages
 
-## 1. Introduction to Memorymanagement
+## 1. Introduction to Memory management
 
 Memory management is the process of controlling and coordinating the way a software application access **computer memory**.
 
